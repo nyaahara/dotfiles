@@ -74,3 +74,5 @@ deleteorigin(){
 ###################### end of git ########################################
 
 
+eval "$(rbenv init - zsh)"
+eval "$(rbenv init - zsh)"
