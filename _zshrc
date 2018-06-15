@@ -1,0 +1,76 @@
+export ZSH="/home/nyaahara/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git ruby gem rails mysql)
+source $ZSH/oh-my-zsh.sh
+export CLICOLOR=1
+export LSCOLORS=DxGxcxdxCxegedabagacad
+
+# standard
+alias hisgrep="history|grep"
+alias achan="vim ~/.zshrc && source ~/.zshrc"
+
+# rails
+alias be="bundle exec"
+alias ber="be rubocop -D"
+alias sl="be  slim-lint app/**/*.slim"
+alias bes="be rake spec"
+alias bers="RAILS_ENV=test be rspec"
+alias fast-spec="bin/rspec-queue spec"
+pry(){
+  bundle exec rails console
+}
+spry(){
+  bundle exec bin/spring stop
+  pry
+}
+alias datac="bundle exec rails dbconsole"
+alias dbmig="bundle exec rake db:migrate"
+alias dbrollback="bundle exec rake db:rollback"
+
+###################### git ########################################
+#source ~/git-completion.zsh
+alias ga="git add -p"
+alias gl="git log --graph --oneline"
+alias gld="git log --pretty=format:"%h%x09%an%x09%ad%x09%s""
+alias gb="git branch"
+alias gc="git checkout"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gs="git status"
+tmpcommit(){
+  git commit -m "tmp how to reverse tmpreverse"
+}
+tmpreverse(){
+  git reset --soft HEAD^
+  git reset HEAD .
+}
+gom(){
+  if [ $# -eq 0 ]; then
+    echo "!! nyaahara error !! require comment"
+    return 1
+  fi
+  git commit -m "$1"
+}
+gam(){
+  git commit --amend
+}
+pusho() {
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  if [ $branch = 'master' ]; then
+    echo "!! nyaahara error !! cannat push master!!!!!! "
+    return 1
+  fi
+  git push origin $branch
+}
+deleteorigin(){
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  if [ $branch = 'master' ]; then
+    echo "!! nyaahara error !! cannat push master!!!!!! "
+    return 1
+  fi
+  git push origin :$branch
+}
+
+###################### end of git ########################################
+
+
