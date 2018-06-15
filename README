@@ -1,0 +1,9 @@
+## For using
+mkdir ~/dotfiles
+mv  ~/.vimrc ~/dotfiles/_vimrc
+mv  ~/.gvimrc ~/dotfiles/_gvimrc
+ln -s ~/dotfiles/_vimrc ~/.vimrc
+ln -s ~/dotfiles/_gvimrc ~/.gvimrc
+
+## For using vundle
+ln -s ~/dotfiles/vimfiles ~/.vim
